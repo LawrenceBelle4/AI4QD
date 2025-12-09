@@ -1,0 +1,38 @@
+# 依赖
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+
+# 环境
+.env
+.venv
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 编译和临时文件
+*.log
+*.tmp
+
+# 前端构建输出
+app/my_analysis_app/dist/
+app/my_analysis_app/.vite/
+
+# 后端上传文件（开发用）
+app/my_analysis_app/backend/uploads/
+
+# 测试文件
+test.jpg
+*.pptx
