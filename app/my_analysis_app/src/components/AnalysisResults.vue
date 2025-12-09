@@ -10,12 +10,12 @@
       </div>
       <div v-else-if="recognitionImage || maskImage" class="image-grid">
         <div v-if="recognitionImage" class="image-cell">
-          <label>覆盖图</label>
           <img :src="recognitionImage" alt="覆盖结果" class="small-image">
+          <label>覆盖图</label>
         </div>
         <div v-if="maskImage" class="image-cell">
-          <label>二值掩码</label>
           <img :src="maskImage" alt="掩码" class="small-image">
+          <label>二值掩码</label>
         </div>
         </div>
       <p v-else class="placeholder">请在左侧上传图片以进行识别...</p>
@@ -195,18 +195,33 @@ hr {
 /* 识别结果的 image-grid 保持不变，但移除了 histogramImage 的逻辑 */
 .image-grid {
   display: flex;
-  gap: 12px;
+  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .image-cell {
-  flex: 1 1 30%;
+  flex: 1 1 calc(50% - 10px);
   text-align: center;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.image-cell label {
+  font-weight: 600;
+  color: #303133;
+  font-size: 14px;
 }
 .small-image {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0,0,0,0.12);
+  background-color: #f5f5f5;
 }
 /* -------------------------------- */
 
