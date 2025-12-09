@@ -33,8 +33,10 @@
         
         <div class="chart-container">
             <label v-if="histogramImage" class="chart-label">直径分布直方图</label>
-            <div v-if="histogramImage" class="histogram-display">
-                <img :src="histogramImage" alt="直方图" class="full-width-image">
+            <div v-if="histogramImage" class="histogram-wrapper">
+                <div class="histogram-display">
+                    <img :src="histogramImage" alt="直方图" class="full-width-image">
+                </div>
             </div>
             <div v-else class="chart-placeholder">
                 <p>暂无直方图</p>
@@ -163,7 +165,7 @@ hr {
 .stats-analysis-layout {
     display: flex;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .chart-container {
@@ -180,18 +182,15 @@ hr {
     margin: 0 0 8px 0;
 }
 
-.key-stats-container {
-    flex: 0 0 55%;
-    padding-top: 0;
+.histogram-wrapper {
+    flex: 1;
     display: flex;
-    flex-direction: column;
 }
 
 .histogram-display {
     border: 1px solid #ebeef5;
     padding: 10px;
     border-radius: 4px;
-    margin-top: 0;
     flex: 1;
     display: flex;
     align-items: center;
@@ -202,6 +201,24 @@ hr {
     width: 100%;
     height: auto;
     border-radius: 4px;
+}
+
+.key-stats-container {
+    flex: 0 0 55%;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.key-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    flex: 1;
 }
 /* -------------------------------- */
 
@@ -246,16 +263,6 @@ hr {
   border-radius: 4px;
 }
 
-.key-stats {
-    display: grid;
-    grid-template-columns: 1fr; /* 右侧数据按列堆叠 */
-    gap: 15px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    border: 1px solid #ebeef5; /* 添加边框以区分 */
-    height: 100%;
-}
 .stat-item {
     font-size: 1em;
     padding: 0;
