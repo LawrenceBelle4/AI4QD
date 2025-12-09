@@ -1,10 +1,15 @@
 <template>
   <div class="analysis-container">
     <header>
-      <h1 class="app-title">
-        <span class="title-icon">🤖</span>
-        <span class="title-text">QD-SAM量子点智能识别与特性分析系统</span>
-      </h1>
+      <div class="header-top">
+        <div class="logo">
+          <span class="logo-text">AI</span>
+          <div class="quantum-sphere">
+            <div class="quantum-dot" v-for="i in 12" :key="i"></div>
+          </div>
+        </div>
+        <h1 class="app-title">QD-SAM量子点智能识别与特性分析系统</h1>
+      </div>
     </header>
     <main class="content-wrapper">
       <section class="left-panel">
@@ -98,28 +103,77 @@ const handleFileUpload = async (file) => {
 
 header {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
 }
 
-.app-title {
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+/* Logo 样式 */
+.logo {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0084ff;
+  letter-spacing: 2px;
+  font-family: 'Arial Black', Arial, sans-serif;
+}
+
+/* 动态量子点球状 */
+.quantum-sphere {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantum-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle at 30% 30%, #ffeb3b, #ff9800);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+.quantum-dot:nth-child(1) { left: 50%; top: 0%; animation-delay: 0s; }
+.quantum-dot:nth-child(2) { left: 85%; top: 15%; animation-delay: 0.15s; }
+.quantum-dot:nth-child(3) { left: 100%; top: 50%; animation-delay: 0.3s; }
+.quantum-dot:nth-child(4) { left: 85%; top: 85%; animation-delay: 0.45s; }
+.quantum-dot:nth-child(5) { left: 50%; top: 100%; animation-delay: 0.6s; }
+.quantum-dot:nth-child(6) { left: 15%; top: 85%; animation-delay: 0.75s; }
+.quantum-dot:nth-child(7) { left: 0%; top: 50%; animation-delay: 0.9s; }
+.quantum-dot:nth-child(8) { left: 15%; top: 15%; animation-delay: 1.05s; }
+.quantum-dot:nth-child(9) { left: 65%; top: 35%; animation-delay: 1.2s; }
+.quantum-dot:nth-child(10) { left: 35%; top: 65%; animation-delay: 1.35s; }
+.quantum-dot:nth-child(11) { left: 65%; top: 65%; animation-delay: 1.5s; }
+.quantum-dot:nth-child(12) { left: 35%; top: 35%; animation-delay: 1.65s; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50% { transform: translate(0, -8px) scale(1.1); opacity: 1; }
+}
+
+.app-title {
   font-size: 26px;
   font-weight: 700;
   color: #0084ff;
   margin: 0;
   text-align: center;
-}
-
-.title-icon {
-  font-size: 32px;
-  display: inline-block;
-  line-height: 1;
-}
-
-.title-text {
+  flex: 1;
   letter-spacing: 0.5px;
 }
 
