@@ -162,20 +162,18 @@ hr {
 /* --- 统计分析结果的新布局样式 --- */
 .stats-analysis-layout {
     display: flex;
-    gap: 20px; /* 左右两栏的间距 */
-    align-items: flex-start; /* 对齐顶部 */
+    gap: 24px;
+    align-items: flex-start;
 }
 
 .chart-container {
-    flex: 1; /* 直方图占据左侧空间 */
-    /* border: 1px solid #ebeef5;
-    padding: 15px;
-    border-radius: 4px; */
+    flex: 0 0 45%;
     padding: 0;
 }
 
 .key-stats-container {
-    flex: 1; /* 统计数据占据右侧空间 */
+    flex: 0 0 55%;
+    padding-top: 0;
 }
 
 .histogram-display {
@@ -195,16 +193,15 @@ hr {
 /* 识别结果的 image-grid 保持不变，但移除了 histogramImage 的逻辑 */
 .image-grid {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .image-cell {
-  flex: 1 1 calc(50% - 10px);
+  flex: 0 1 calc(50% - 8px);
   text-align: center;
-  min-width: 250px;
-  max-width: 350px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,10 +211,11 @@ hr {
   font-weight: 600;
   color: #303133;
   font-size: 14px;
+  margin: 0;
 }
 .small-image {
   width: 100%;
-  height: 280px;
+  height: 240px;
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0,0,0,0.12);

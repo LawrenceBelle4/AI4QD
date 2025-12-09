@@ -1,7 +1,10 @@
 <template>
   <div class="analysis-container">
     <header>
-      <h1>{{ title }}</h1>
+      <h1 class="app-title">
+        <span class="title-icon">🤖</span>
+        <span class="title-text">QD-SAM量子点智能识别与特性分析系统</span>
+      </h1>
     </header>
     <main class="content-wrapper">
       <section class="left-panel">
@@ -92,13 +95,34 @@ const handleFileUpload = async (file) => {
   height: 100vh;
   padding: 20px;
 }
-header h1 {
-  /* 确保标题居中显示 */
-  text-align: center;
+
+header {
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
-  font-size: 2em; /* 稍微调大标题 */
-  color: #333;
 }
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0084ff;
+  margin: 0;
+  text-align: center;
+}
+
+.title-icon {
+  font-size: 32px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.title-text {
+  letter-spacing: 0.5px;
+}
+
 .content-wrapper {
   display: flex;
   flex: 1;
