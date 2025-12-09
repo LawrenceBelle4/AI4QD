@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  qd-sam-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # 持久化上传的文件
+      - ./backend_uploads:/app/backend/uploads
+      # 持久化 Nginx 日志
+      - ./nginx_logs:/var/log/nginx
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# 在服务器上使用方式:
+# docker-compose up -d
+# 
+# 查看日志:
+# docker-compose logs -f
+#
+# 停止服务:
+# docker-compose down
+#
+# 完整重建:
+# docker-compose up -d --build

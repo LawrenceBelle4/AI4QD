@@ -34,15 +34,19 @@ def _try_load_model():
     import cv2
 
     # Ensure project root is on sys.path so local sam2 package can be imported
-    ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    if ROOT not in sys.path:
-      sys.path.append(ROOT)
+    BACKEND_DIR = os.path.abspath(os.path.dirname(__file__))
+    FRONTEND_DIR = os.path.abspath(os.path.join(BACKEND_DIR, '..'))
+    PROJECT_ROOT = os.path.abspath(os.path.join(FRONTEND_DIR, '..', '..'))
+    
+    if PROJECT_ROOT not in sys.path:
+      sys.path.append(PROJECT_ROOT)
 
-    # candidate paths inside repository
-    sam_checkpoint = os.path.join(ROOT, '演示', 'checkpoint', 'sam2.1_hiera_large.pt')
-    # config file in repo is at 演示/configs/sam2.1_hiera_l.yaml
-    model_cfg = os.path.join(ROOT, '演示', 'configs', 'sam2.1_hiera_l.yaml')
-    fine_tuned = os.path.join(ROOT, '演示', 'train_quantum', 'sam2_finetuned_final.torch')
+    # candidate paths inside repository (QD directory at project root)
+    QD_ROOT = os.path.join(PROJECT_ROOT, 'QD')
+    sam_checkpoint = os.path.join(QD_ROOT, 'checkpoint', 'sam2.1_hiera_large.pt')
+    # config file in repo is at QD/configs/sam2.1_hiera_l.yaml
+    model_cfg = os.path.join(QD_ROOT, 'configs', 'sam2.1_hiera_l.yaml')
+    fine_tuned = os.path.join(QD_ROOT, 'train_quantum', 'sam2_finetuned_final.torch')
 
     # import builder + automatic mask generator
     from sam2.build_sam import build_sam2
@@ -60,10 +64,10 @@ def _try_load_model():
     # Some sam2/build logic uses hydra and expects config paths relative to a project folder.
     old_cwd = os.getcwd()
     try:
-      demo_dir = os.path.join(ROOT, '演示')
-      if os.path.isdir(demo_dir):
-        os.chdir(demo_dir)
-        # use relative paths inside 演示 so hydra's search can find 'configs/...'
+      qd_dir = os.path.join(PROJECT_ROOT, 'QD')
+      if os.path.isdir(qd_dir):
+        os.chdir(qd_dir)
+        # use relative paths inside QD so hydra's search can find 'configs/...'
         model_cfg_rel = os.path.join('configs', 'sam2.1', os.path.basename(model_cfg))
         sam_checkpoint_rel = os.path.join('checkpoint', os.path.basename(sam_checkpoint))
         _SAM_MODEL = build_sam2(model_cfg_rel, sam_checkpoint_rel, device=_DEVICE, apply_postprocessing=False)

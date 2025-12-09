@@ -1,0 +1,46 @@
+# 只排除开发和构建产物，保留模型和必要文件
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.Python
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git
+.git/
+.gitignore
+
+# 开发文件
+.env.local
+.env.development
+*.pptx
+
+# 前端构建（会在 Docker 多阶段构建中重新生成）
+app/my_analysis_app/dist/
+app/my_analysis_app/node_modules/
+
+# 不排除的重要文件
+!QD/
+!app/
+!nginx.conf
+!docker-entrypoint.sh
+!requirements.txt
