@@ -32,7 +32,7 @@
       <div v-else-if="statisticsData || histogramImage" class="stats-analysis-layout">
         
         <div class="chart-container">
-            <label v-if="histogramImage">直径分布直方图</label>
+            <label v-if="histogramImage" class="chart-label">直径分布直方图</label>
             <div v-if="histogramImage" class="histogram-display">
                 <img :src="histogramImage" alt="直方图" class="full-width-image">
             </div>
@@ -169,18 +169,33 @@ hr {
 .chart-container {
     flex: 0 0 45%;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-label {
+    font-weight: 600;
+    color: #303133;
+    font-size: 14px;
+    margin: 0 0 8px 0;
 }
 
 .key-stats-container {
     flex: 0 0 55%;
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .histogram-display {
     border: 1px solid #ebeef5;
     padding: 10px;
     border-radius: 4px;
-    margin-top: 5px;
+    margin-top: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .full-width-image {
@@ -235,11 +250,11 @@ hr {
     display: grid;
     grid-template-columns: 1fr; /* 右侧数据按列堆叠 */
     gap: 15px;
-    margin-bottom: 20px;
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 4px;
     border: 1px solid #ebeef5; /* 添加边框以区分 */
+    height: 100%;
 }
 .stat-item {
     font-size: 1em;
