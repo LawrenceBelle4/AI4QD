@@ -5,3 +5,7 @@ PORT=5001 python app.py
 
 cd /Users/yuzhuolin/Desktop/前端/12_7/app/my_analysis_app
 npm run dev
+
+
+
+git config user.email "46368@prc.ac.th" && git config user.name "Lawrence Belle"
