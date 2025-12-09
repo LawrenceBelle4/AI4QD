@@ -32,18 +32,23 @@
       <div v-else-if="statisticsData || histogramImage" class="stats-analysis-layout">
         
         <div class="chart-container">
-            <label v-if="histogramImage" class="chart-label">直径分布直方图</label>
-            <div v-if="histogramImage" class="histogram-wrapper">
-                <div class="histogram-display">
+            <div class="container-header">
+                <label v-if="histogramImage" class="chart-label">直径分布直方图</label>
+            </div>
+            <div class="histogram-wrapper">
+                <div v-if="histogramImage" class="histogram-display">
                     <img :src="histogramImage" alt="直方图" class="full-width-image">
                 </div>
-            </div>
-            <div v-else class="chart-placeholder">
-                <p>暂无直方图</p>
+                <div v-else class="chart-placeholder">
+                    <p>暂无直方图</p>
+                </div>
             </div>
         </div>
 
         <div class="key-stats-container">
+            <div class="container-header">
+                <h4 style="margin: 0; color: #303133; font-size: 14px; font-weight: 600;">量子点统计数据</h4>
+            </div>
             <div class="key-stats">
               <div class="stat-item">
                 <span class="label">量子点数量：</span>
@@ -175,11 +180,25 @@ hr {
     flex-direction: column;
 }
 
+.key-stats-container {
+    flex: 0 0 55%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
 .chart-label {
     font-weight: 600;
     color: #303133;
     font-size: 14px;
-    margin: 0 0 8px 0;
+    margin: 0;
 }
 
 .histogram-wrapper {
@@ -201,13 +220,6 @@ hr {
     width: 100%;
     height: auto;
     border-radius: 4px;
-}
-
-.key-stats-container {
-    flex: 0 0 55%;
-    padding-top: 0;
-    display: flex;
-    flex-direction: column;
 }
 
 .key-stats {
